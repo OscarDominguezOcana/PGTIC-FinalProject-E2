@@ -1,4 +1,4 @@
-apiVersion: autoscaling/v2
+apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
   name: hpa-details
@@ -6,8 +6,8 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: hpa-details-v1
-  minReplicas: 1
+    name: details-v1
+  minReplicas: 2
   maxReplicas: 10
   metrics:
   - type: Resource
@@ -15,17 +15,10 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 90
-  - type: Pods
-    pods:
-      metric:
-        name: packets-per-second
-      target:
-        type: AverageValue
-        averageValue: 1k
+        averageUtilization: 80
   - type: Resource
     resource:
       name: memory 
       target:
         type: Utilization 
-        averageValue: 10Mi 
+        averageValue: 51Mi         

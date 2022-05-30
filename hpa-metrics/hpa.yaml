@@ -1,0 +1,95 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: productpage-hpa
+spec:
+  maxReplicas: 10
+  metrics:
+  - object:
+      describedObject:
+        apiVersion: /v1
+        kind: Service
+        name: productpage
+      metric:
+        name: istio_requests_total
+      target:
+        type: Value
+        value: "1000"
+    type: Object
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: productpage-v1
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: details-hpa
+spec:
+  maxReplicas: 10
+  metrics:
+  - object:
+      describedObject:
+        apiVersion: /v1
+        kind: Service
+        name: details
+      metric:
+        name: istio_requests_total
+      target:
+        type: Value
+        value: "1000"
+    type: Object
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: details-v1
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: reviews-hpa
+spec:
+  maxReplicas: 10
+  metrics:
+  - object:
+      describedObject:
+        apiVersion: /v1
+        kind: Service
+        name: reviews
+      metric:
+        name: istio_requests_total
+      target:
+        type: Value
+        value: "1000"
+    type: Object
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: reviews-v1
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ratings-hpa
+spec:
+  maxReplicas: 10
+  metrics:
+  - object:
+      describedObject:
+        apiVersion: /v1
+        kind: Service
+        name: ratings
+      metric:
+        name: istio_requests_total
+      target:
+        type: Value
+        value: "1000"
+    type: Object
+  minReplicas: 2
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ratings-v1

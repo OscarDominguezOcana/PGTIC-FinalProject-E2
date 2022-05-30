@@ -6,7 +6,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: hpa-reviews-v1
+    name: reviews-v1
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -16,10 +16,9 @@ spec:
       target:
         type: Utilization
         averageUtilization: 90
-  - type: Pods
-    pods:
-      metric:
-        name: packets-per-second
+  - type: Resource
+    resource:
+      name: memory 
       target:
-        type: AverageValue
-        averageValue: 1k
+        type: Utilization 
+        averageValue: 205Mi 
