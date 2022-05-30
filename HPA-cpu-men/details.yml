@@ -6,7 +6,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: hpa-details
+    name: hpa-details-v1
   minReplicas: 1
   maxReplicas: 10
   metrics:
