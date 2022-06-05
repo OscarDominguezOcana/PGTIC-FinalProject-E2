@@ -1,5 +1,4 @@
-hpa metricas solo aplicar
-
+HPA para la metricas externas basadas en prometheus
 
 
 cd istio-1.13.4
